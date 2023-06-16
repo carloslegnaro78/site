@@ -13,9 +13,9 @@ namespace site.Models
 
         public string Nome { get; set; }
 
-        public int DescricaoCurta { get; set; }
+        public string DescricaoCurta { get; set; }
 
-        public int DescricaoLonga { get; set; }
+        public string DescricaoLonga { get; set; }
 
         public decimal Preco { get; set; }
 
