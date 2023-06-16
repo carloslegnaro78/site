@@ -8,7 +8,7 @@ namespace site.Config
     public class ConfigProduto : IProdutoRepositorio
     {
 
-        private readonly ICateogriaRepositorio _categogriaRepositorio = new ConfigCategoria();
+        private readonly ICategoriaRepositorio _categogriaRepositorio = new ConfigCategoria();
 
         public IEnumerable<Produtos> Produtos
         {
@@ -21,7 +21,7 @@ namespace site.Config
                         Preco = 250,
                         DescricaoCurta = "Camisa Polo",
                         DescricaoLonga = "Camisa Polo Masculina diversas cores",
-                        Categoria = _categogriaRepositorio.Cateogrias.First(),
+                        Categoria = _categogriaRepositorio.Categorias.First(),
                         ImagemUrl ="",
                         EmEstoque = true,
                         Ativo = true,

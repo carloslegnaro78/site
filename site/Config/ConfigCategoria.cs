@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace site.Config
 {
-    public class ConfigCategoria : ICateogriaRepositorio
+    public class ConfigCategoria : ICategoriaRepositorio
     {
-        IEnumerable<Categoria> ICateogriaRepositorio.Cateogrias
+        IEnumerable<Categoria> ICategoriaRepositorio.Categorias
         {
             get
             {

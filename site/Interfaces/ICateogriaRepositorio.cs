@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace site.Interfaces
 {
-    interface ICateogriaRepositorio
+    interface ICategoriaRepositorio
     {
-        IEnumerable<Categoria> Cateogrias { get;  }
+        IEnumerable<Categoria> Categorias { get;  }
     }
 }
