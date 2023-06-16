@@ -33,5 +33,12 @@ namespace site.Config
                 };
             }
         }
+
+        public IEnumerable<Produtos> ProdutosMaisVendidos { get; }
+
+        public Produtos GetProdutosById(int produtoId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
