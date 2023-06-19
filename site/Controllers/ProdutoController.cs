@@ -13,9 +13,10 @@ namespace site.Controllers
         private readonly ICategoriaRepositorio _categoriaRepositorio;
         private readonly IProdutoRepositorio _produtoRepositorio;
 
-        public ProdutoController(ConfigProduto produtoConfig, ConfigCategoria categoriaConfig)
+        public ProdutoController(IProdutoRepositorio produtoRep, ICategoriaRepositorio cateogriaRep)
         {
-
+            _categoriaRepositorio = cateogriaRep;
+            _produtoRepositorio = produtoRep;
         }
 
         public ViewResult List()

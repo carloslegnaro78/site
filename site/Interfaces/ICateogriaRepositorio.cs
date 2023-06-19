@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace site.Interfaces
 {
-    interface ICategoriaRepositorio
+    public interface ICategoriaRepositorio
     {
         IEnumerable<Categoria> Categorias { get;  }
     }

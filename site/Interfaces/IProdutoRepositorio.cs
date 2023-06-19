@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace site.Interfaces
 {
-    interface IProdutoRepositorio
+    public interface IProdutoRepositorio
     {
         IEnumerable<Produtos> Produtos { get; }
         IEnumerable<Produtos> ProdutosMaisVendidos { get; }
