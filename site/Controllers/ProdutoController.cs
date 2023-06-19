@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using site.Config;
 using site.Interfaces;
+using site.ViewModels;
 
 namespace site.Controllers
 {
@@ -21,9 +22,10 @@ namespace site.Controllers
 
         public ViewResult List()
         {
-            var produtos = _produtoRepositorio.Produtos;
-
-            return View(produtos);
+            ProdutoListViewModel vm = new ProdutoListViewModel();
+            vm.Produtos = _produtoRepositorio.Produtos;
+            vm.CategoriaAtual = "ProdutoCategoria";
+            return View(vm);
         }
 
         public IActionResult Index()

@@ -1,5 +1,5 @@
-﻿@using site.Models
-@model IEnumerable<Produtos>
+﻿@using site.ViewModels
+@model ProdutoListViewModel
 
 @{
     ViewData["Title"] = "Lista de Produtos";
@@ -7,7 +7,9 @@
 
 <h2>Lista de Produtos</h2>
 
-@{ foreach (var produto in Model)
+<h5>@Model.CategoriaAtual</h5>
+
+@{ foreach (var produto in Model.Produtos)
     {
         <div>
             <h4>Nome: @produto.Nome</h4>
