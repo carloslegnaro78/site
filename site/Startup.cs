@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using site.Data;
 using site.Models;
 using site.Services;
+using site.Interfaces;
+using site.Config;
 
 namespace site
 {
@@ -35,6 +37,10 @@ namespace site
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+
+            services.AddTransient<ICategoriaRepositorio, ConfigCategoria>();
+            services.AddTransient<IProdutoRepositorio, ConfigProduto>();
+
 
             services.AddMvc();
         }
