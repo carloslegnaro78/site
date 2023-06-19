@@ -1,7 +1,22 @@
-﻿
+﻿@using site.Models
+@model IEnumerable<Produtos>
+
 @{
     ViewData["Title"] = "Lista de Produtos";
 }
 
-<h2>List</h2>
+<h2>Lista de Produtos</h2>
+
+@{ foreach (var produto in Model)
+    {
+        <div>
+            <h4>Nome: @produto.Nome</h4>
+            <p>Valor: @produto.Preco.ToString("c")</p>
+        </div>
+
+    }
+
+}
+
+
 
