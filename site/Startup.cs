@@ -8,6 +8,7 @@ using site.Config;
 using site.Data;
 using site.Interfaces;
 using site.Models;
+using site.Repositorio;
 using site.Services;
 
 namespace site
@@ -34,8 +35,8 @@ namespace site
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddTransient<ICategoriaRepositorio, ConfigCategoria>();
-            services.AddTransient<IProdutoRepositorio, ConfigProduto>();
+            services.AddTransient<ICategoriaRepositorio, CategoriaRepositorio>();
+            services.AddTransient<IProdutoRepositorio, ProdutoRepositorio>();
 
 
             services.AddMvc();
