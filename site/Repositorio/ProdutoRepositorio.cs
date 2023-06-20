@@ -23,9 +23,8 @@ namespace site.Repositorio
 
         public IEnumerable<Produtos> ProdutosMaisVendidos => _appDbContext.Produtos.Where(p => p.Ativo).Include(c => c.Categoria);
 
-        public Produtos GetProdutosById(int produtoId)
-        {
-            throw new NotImplementedException();
-        }
+        public Produtos GetProdutosById(int produtoId) => _appDbContext.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+
+
     }
 }
