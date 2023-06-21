@@ -8,13 +8,9 @@
 
 <h5>@Model.CategoriaAtual</h5>
 
-@{ foreach (var produto in Model.Produtos)
+@{ foreach (Produtos produto in Model.Produtos)
     {
-        <div>
-            <h4>Nome: @produto.Nome</h4>
-            <p>Valor: @produto.Preco.ToString("c")</p>
-        </div>
-
+         @Html.Partial("Detalhes", produto)
     }
 
 }

@@ -22,10 +22,10 @@ namespace site.Config
                         DescricaoCurta = "Camisa Polo",
                         DescricaoLonga = "Camisa Polo Masculina diversas cores",
                         Categoria = _categogriaRepositorio.Categorias.First(),
-                        ImagemUrl ="https://cdn-images.farfetch-contents.com/18/25/78/33/18257833_40996697_600.jpg",
+                        ImagemUrl ="https://s3.amazonaws.com/milanicamisaria.com.br/catalog/product/cache/1/image/2000x3000/9df78eab33525d08d6e5fb8d27136e95/c/a/camisa_gola_polo_mostarda_manga_curta_-_camisaria_milani_3_.jpg",
                         EmEstoque = true,
                         Ativo = true,
-                        ImagemMiniaturaUrl ="https://cdn-images.farfetch-contents.com/18/25/78/33/18257833_40996697_600.jpg"
+                        ImagemMiniaturaUrl ="https://s3.amazonaws.com/milanicamisaria.com.br/catalog/product/cache/1/image/2000x3000/9df78eab33525d08d6e5fb8d27136e95/c/a/camisa_gola_polo_mostarda_manga_curta_-_camisaria_milani_3_.jpg"
 
                     },
 
@@ -35,10 +35,10 @@ namespace site.Config
                         DescricaoCurta = "Saia Feminina",
                         DescricaoLonga = "Saia diversos tamanhos e diversas cores",
                         Categoria = _categogriaRepositorio.Categorias.Last(),
-                        ImagemUrl ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmki4s5jGwsf3YB0SCLGEqILJuML_40hXJ4NZlyJk5gXumzXwu0iuKjPhl0i5vwqI0cUY&usqp=CAU",
+                        ImagemUrl ="https://50375.cdn.simplo7.net/static/50375/sku/saias-b16-saia-evase-preta-com-cinto--p-1638134915738.jpg",
                         EmEstoque = true,
                         Ativo = true,
-                        ImagemMiniaturaUrl ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmki4s5jGwsf3YB0SCLGEqILJuML_40hXJ4NZlyJk5gXumzXwu0iuKjPhl0i5vwqI0cUY&usqp=CAU"
+                        ImagemMiniaturaUrl ="https://50375.cdn.simplo7.net/static/50375/sku/saias-b16-saia-evase-preta-com-cinto--p-1638134915738.jpg"
 
                     },
 
