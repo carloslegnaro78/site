@@ -10,6 +10,7 @@ using site.Interfaces;
 using site.Models;
 using site.Repositorio;
 using site.Services;
+using System;
 
 namespace site
 {
@@ -43,7 +44,7 @@ namespace site
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider ServiceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -66,6 +67,8 @@ namespace site
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            dbInicializacao.Seed(ServiceProvider);
         }
     }
 }
