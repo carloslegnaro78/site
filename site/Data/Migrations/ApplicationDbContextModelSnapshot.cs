@@ -202,9 +202,9 @@ namespace site.Data.Migrations
 
                     b.Property<int>("CategoriaId");
 
-                    b.Property<int>("DescricaoCurta");
+                    b.Property<string>("DescricaoCurta");
 
-                    b.Property<int>("DescricaoLonga");
+                    b.Property<string>("DescricaoLonga");
 
                     b.Property<bool>("EmEstoque");
 

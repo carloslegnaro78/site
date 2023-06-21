@@ -11,7 +11,7 @@ using System;
 namespace site.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230614211603_tabelaProdeCateg")]
+    [Migration("20230621044458_tabelaProdeCateg")]
     partial class tabelaProdeCateg
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -203,9 +203,9 @@ namespace site.Data.Migrations
 
                     b.Property<int>("CategoriaId");
 
-                    b.Property<int>("DescricaoCurta");
+                    b.Property<string>("DescricaoCurta");
 
-                    b.Property<int>("DescricaoLonga");
+                    b.Property<string>("DescricaoLonga");
 
                     b.Property<bool>("EmEstoque");
 

@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-site-3BD8E0FC-1CBA-4929-BC68-14C4C397CB9B</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20230614211603_tabelaProdeCateg.cs" />
+    <Compile Remove="Data\Migrations\20230614211603_tabelaProdeCateg.Designer.cs" />
+    <Compile Remove="Data\Migrations\20230621044237_tabelaProdeCateg1.cs" />
+    <Compile Remove="Data\Migrations\20230621044237_tabelaProdeCateg1.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
