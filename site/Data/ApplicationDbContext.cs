@@ -19,8 +19,7 @@ namespace site.Data
 
         public DbSet<Categoria>Categorias { get; set; }
 
-        public DbSet<Carrinho> Carrinho { get; set; }
-
+      
         public DbSet<CarrinhoItem> CarrinhoItens { get; set; }
  
         protected override void OnModelCreating(ModelBuilder builder)
