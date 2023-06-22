@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using site.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace site.Models
 {
@@ -39,6 +41,65 @@ namespace site.Models
             sesssion.SetString("CarId", carId);
 
             return new Carrinho(context) { CarrinhoId = carId };
+        }
+
+        public void AddToCarrinho(Produtos produto, int quant)
+        {
+            var carrinhoItem =
+                _appDbContext.CarrinhoItens.SingleOrDefault(
+                    s => s.Produto.ProdutoId == produto.ProdutoId && s.CarrinhoId == CarrinhoId);
+
+           if (carrinhoItem == null)
+            {
+                carrinhoItem = new CarrinhoItem
+                {
+                    CarrinhoId = CarrinhoId,
+                    Produto = produto,
+                    Quatidade = 1
+                };
+
+                _appDbContext.CarrinhoItens.Add(carrinhoItem);
+            }
+            else
+            {
+                carrinhoItem.Quatidade++;
+            }
+            _appDbContext.SaveChanges();
+        }
+
+        public int RemoveCarrinho(Produtos produto)
+        {
+            var carrinhoItem =
+                _appDbContext.CarrinhoItens.SingleOrDefault(
+                    s => s.Produto.ProdutoId == produto.ProdutoId && s.CarrinhoId == CarrinhoId);
+
+            var localQuant = 0;
+
+            if (carrinhoItem != null)
+            {
+                if (carrinhoItem.Quatidade > 1)
+                {
+                    carrinhoItem.Quatidade--;
+                    localQuant = carrinhoItem.Quatidade;
+                }
+                else
+                {
+                    _appDbContext.CarrinhoItens.Remove(carrinhoItem);
+                }
+            }
+            _appDbContext.SaveChanges();
+
+            return localQuant;
+
+        }
+
+        public List<CarrinhoItem> GetCarrinhoItens()
+        {
+            return CarrinhoItens ??
+                (CarrinhoItens =
+                    _appDbContext.CarrinhoItens.Where(c => c.CarrinhoId == CarrinhoId)
+                        .Include(s => s.Produto)
+                        .ToList());                
         }
     }
 }
