@@ -10,16 +10,16 @@ namespace site.Models
 {
     public class Carrinho
     {
-        private readonly ApplicationDbContext _appDbContext;
-
-        public Carrinho(IEnumerable<ApplicationDbContext> context)
-        {
-
-        }
+        private readonly ApplicationDbContext _appDbContext;        
 
         private Carrinho(ApplicationDbContext appDbContext)
         {
             _appDbContext = appDbContext;
+        }
+
+        public Carrinho(IEnumerable<ApplicationDbContext> context)
+        {
+
         }
 
         public int CarrrinhoId { get; set; }
@@ -28,7 +28,6 @@ namespace site.Models
         public string CarrinhoId { get; private set; }
 
         //MÉTODOS DA CLASSE
-
         public static Carrinho GetCarrinho(IServiceProvider services)
         {
 
@@ -101,5 +100,24 @@ namespace site.Models
                         .Include(s => s.Produto)
                         .ToList());                
         }
+
+        public void LimparCarrinho()
+        {
+            var carItens = _appDbContext
+                .CarrinhoItens
+                .Where(car => car.CarrinhoId == CarrinhoId);
+
+            _appDbContext.CarrinhoItens.RemoveRange(carItens);
+
+            _appDbContext.SaveChanges();
+        }
+
+        public decimal GetCarrinhoTotal()
+        {
+            var total = _appDbContext.CarrinhoItens.Where(c => c.CarrinhoId == CarrinhoId)
+                .Select(c => c.Produto.Preco * c.Quatidade).Sum();
+            return total;
+        }
+
     }
 }
