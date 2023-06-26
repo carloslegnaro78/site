@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using site.Interfaces;
 using site.Models;
+using site.ViewModels;
 
 namespace site.Controllers
 {
@@ -13,14 +14,24 @@ namespace site.Controllers
         private readonly IProdutoRepositorio _produtoRep;
         private readonly Carrinho _carrinho;
 
-        public CarrinhoController()
+        public CarrinhoController( IProdutoRepositorio produtoRep, Carrinho carrinho)
         {
-                
+            _produtoRep = produtoRep;
+            _carrinho = carrinho;
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            var itens = _carrinho.GetCarrinhoItens();
+            _carrinho.CarrinhoItens = itens;
+
+            var carVm = new CarrinhoViewModel
+            {
+                Carrinho = _carrinho,
+                CarrinhoTotal = _carrinho.GetCarrinhoTotal()
+            };
+
+            return View(carVm);
         }
     }
 }
