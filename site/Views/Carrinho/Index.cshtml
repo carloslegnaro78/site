@@ -20,7 +20,7 @@
                         <td class="text-center">@item.Quatidade</td>
                         <td class="text-left">@item.Produto.Nome</td>
                         <td class="text-right">@item.Produto.Preco.ToString("c")</td>
-                        <td>
+                        <td class="text-right">
                             @((item.Quatidade * item.Produto.Preco).ToString("c"))
                         </td>
                         <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="Carrinho" asp-action="RemoveCarrinho" asp-route-produtoId="@item.Produto.ProdutoId"></a></td>
@@ -36,6 +36,23 @@
             </tr>
         </tfoot>
     </table>
+    
+    <div class="text-right">
+        <div class="btn-group">
+            <a class="btn btn-success">Comprar</a>
+            <a class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Add mais Produtos<span class="caret"></span>
+                </a>
+                <nav>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a asp-controller="Produto" asp-action="List" asp-route-categoria="Masculino">Masculino</a></li>
+                        <li><a asp-controller="Produto" asp-action="List" asp-route-categoria="Feminino">Feminino</a></li>                        
+                    </ul>
+                </nav>
+            </a>
+        </div>
+    </div>
 
 </div>
 
