@@ -47,7 +47,7 @@ namespace site
                         Categoria = Categorias["Feminino"],
                         ImagemUrl = "https://50375.cdn.simplo7.net/static/50375/sku/saias-b16-saia-evase-preta-com-cinto--p-1638134915738.jpg",
                         EmEstoque = true,
-                        Ativo = true,
+                        Ativo = false,
                         ImagemMiniaturaUrl = "https://50375.cdn.simplo7.net/static/50375/sku/saias-b16-saia-evase-preta-com-cinto--p-1638134915738.jpg"
 
                     }

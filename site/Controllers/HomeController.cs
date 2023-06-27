@@ -4,30 +4,31 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using site.Interfaces;
 using site.Models;
+using site.ViewModels;
 
 namespace site.Controllers
 {
     public class HomeController : Controller
     {
+
+
+        private readonly IProdutoRepositorio _produtoRep;
+        public HomeController(IProdutoRepositorio produtoRep)
+        {
+            _produtoRep = produtoRep;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var homeVM = new HomeViewModel
+            {
+                ProdutosMaisVendidos = _produtoRep.ProdutosMaisVendidos
+            };
+            return View(homeVM);
         }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
+        
 
         public IActionResult Error()
         {
