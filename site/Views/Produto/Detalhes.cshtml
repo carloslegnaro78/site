@@ -1,9 +1,28 @@
 ﻿@model Produtos
 
 
-<div>
-    <h4>Nome: @Model.Nome</h4>
-    <img src="@Model.ImagemUrl" width="150" />
-    <p>Valor: @Model.Preco.ToString("c")</p>
+<div class="container marginTop">      
+    <div class="row">
+        <div class="card">
+            <div class="text-center view overlay hm-white-slight">
+                <img src="@Model.ImagemUrl" width="100" class="img-fluid" alt="" />
+                <a href="#">
+                    <div class="mark waves-effect waves-light"></div>
+                </a>
+            </div>
+            <div class="card-block">
+                <!--Title-->
+                <h4 class="card-title">@Model.Nome</h4>
+                <!--Text-->
+                <p class="card-text">@Model.DescricaoLonga.</p>
+                <p class="btn btn-group pull-right">
+                    <a asp-controller="Produto" asp-action="List" class="btn btn-default"></a>
+                    <a class="btn btn-success" id="cartButton" asp-controller="Carrinho" asp-action="AddToCarrinho" asp-route-produtoId="@Model.ProdutoId">
+                        Add @Model.Nome ao Carrinho
+                    </a>
+                </p>
+            </div>           
+        </div>
+    </div>
 </div>
 
