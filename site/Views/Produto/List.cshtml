@@ -1,19 +1,17 @@
-﻿
-
-@{
+﻿@{
     ViewData["Title"] = "Lista de Produtos";
 }
 
-<h2>Lista de Produtos</h2>
+<div class="row marginTop">
 
-<h5>@Model.CategoriaAtual</h5>
+    @{ foreach (Produtos produto in Model.Produtos)
+        {
+            @Html.Partial("Detalhes", produto)
+        }
 
-@{ foreach (Produtos produto in Model.Produtos)
-    {
-         @Html.Partial("Detalhes", produto)
     }
 
-}
+</div>
 
 
 
