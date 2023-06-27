@@ -1,58 +1,54 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+using Microsoft.AspNetCore.Http;
+using site.Data;
+using System.Collections.Generic;
+using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using site.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace site.Models
 {
     public class Carrinho
     {
-        private readonly ApplicationDbContext _appDbContext;        
-
+        private readonly ApplicationDbContext _appDbContext;
         private Carrinho(ApplicationDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public Carrinho(IEnumerable<ApplicationDbContext> context)
-        {
-
-        }
-
-        public int CarrrinhoId { get; set; }
+        public string CarrrinhoId { get; set; }
 
         public List<CarrinhoItem> CarrinhoItens { get; set; }
-        public string CarrinhoId { get; private set; }
+        
+
+
 
         //MÉTODOS DA CLASSE
         public static Carrinho GetCarrinho(IServiceProvider services)
         {
 
-            ISession sesssion = services.GetRequiredService<HttpContextAccessor>()?
-                .HttpContext.Session;
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?
+            .HttpContext.Session;
 
-            var context = services.GetServices<ApplicationDbContext>();
-            string carId = sesssion.GetString("CarId") ?? Guid.NewGuid().ToString();
+            var context = services.GetService<ApplicationDbContext>();
+            string carId = session.GetString("CarId") ?? Guid.NewGuid().ToString();
 
-            sesssion.SetString("CarId", carId);
-
-            return new Carrinho(context) { CarrinhoId = carId };
+            session.SetString("CarId", carId);
+            return new Carrinho(context) { CarrrinhoId = carId };
         }
 
         public void AddToCarrinho(Produtos produto, int quant)
         {
             var carrinhoItem =
                 _appDbContext.CarrinhoItens.SingleOrDefault(
-                    s => s.Produto.ProdutoId == produto.ProdutoId && s.CarrinhoId == CarrinhoId);
+                    s => s.Produto.ProdutoId == produto.ProdutoId && s.CarrinhoId == CarrrinhoId);
 
            if (carrinhoItem == null)
             {
                 carrinhoItem = new CarrinhoItem
                 {
-                    CarrinhoId = CarrinhoId,
+                    CarrinhoId = CarrrinhoId,
                     Produto = produto,
                     Quatidade = 1
                 };
@@ -70,7 +66,7 @@ namespace site.Models
         {
             var carrinhoItem =
                 _appDbContext.CarrinhoItens.SingleOrDefault(
-                    s => s.Produto.ProdutoId == produto.ProdutoId && s.CarrinhoId == CarrinhoId);
+                    s => s.Produto.ProdutoId == produto.ProdutoId && s.CarrinhoId == CarrrinhoId);
 
             var localQuant = 0;
 
@@ -96,7 +92,7 @@ namespace site.Models
         {
             return CarrinhoItens ??
                 (CarrinhoItens =
-                    _appDbContext.CarrinhoItens.Where(c => c.CarrinhoId == CarrinhoId)
+                    _appDbContext.CarrinhoItens.Where(c => c.CarrinhoId == CarrrinhoId)
                         .Include(s => s.Produto)
                         .ToList());                
         }
@@ -105,7 +101,7 @@ namespace site.Models
         {
             var carItens = _appDbContext
                 .CarrinhoItens
-                .Where(car => car.CarrinhoId == CarrinhoId);
+                .Where(car => car.CarrinhoId == CarrrinhoId);
 
             _appDbContext.CarrinhoItens.RemoveRange(carItens);
 
@@ -114,7 +110,7 @@ namespace site.Models
 
         public decimal GetCarrinhoTotal()
         {
-            var total = _appDbContext.CarrinhoItens.Where(c => c.CarrinhoId == CarrinhoId)
+            var total = _appDbContext.CarrinhoItens.Where(c => c.CarrinhoId == CarrrinhoId)
                 .Select(c => c.Produto.Preco * c.Quatidade).Sum();
             return total;
         }

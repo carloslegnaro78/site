@@ -33,5 +33,26 @@ namespace site.Controllers
 
             return View(carVm);
         }
+
+        public RedirectToActionResult AddCarrinho(int produtoId)
+        {
+            var selProduto = _produtoRep.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+            if (selProduto != null)
+            {
+                _carrinho.AddToCarrinho(selProduto, 1);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToActionResult RemoveCarrinho(int produtoId)
+        {
+            var selProduto = _produtoRep.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+            if (selProduto != null)
+            {
+                _carrinho.RemoveCarrinho(selProduto);
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -1,0 +1,33 @@
+﻿@model CarrinhoViewModel
+
+<div class="row checkoutForm">
+    <h2>Carrinho de Compras</h2>
+    <h4>Lista de Produtos no Carrinho</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Quantidade</th>
+                <th>Produto</th>
+                <th class="text-right">Preço</th>
+                <td class="text-right">Subtotal</td>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model.Carrinho.CarrinhoItens)
+                {
+                    <tr>
+                        <td class="text-center">@item.Quatidade</td>
+                        <td class="text-left">@item.Produto.Nome</td>
+                        <td class="text-right">@item.Produto.Preco.ToString("c")</td>
+                        <td>
+                            @((item.Quatidade * item.Produto.Preco).ToString("c"))
+                        </td>
+                        <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="Carrinho" asp-action="RemoveCarrinho" asp-route-produtoId="@item.Produto.ProdutoId"></a></td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+
+</div>
+
