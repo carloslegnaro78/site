@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using site.Config;
 using site.Interfaces;
+using site.Models;
 using site.ViewModels;
 
 namespace site.Controllers
@@ -20,12 +21,31 @@ namespace site.Controllers
             _produtoRepositorio = produtoRep;
         }
 
-        public ViewResult List()
+        public ViewResult List(string categoria)
         {
-            ProdutoListViewModel vm = new ProdutoListViewModel();
-            vm.Produtos = _produtoRepositorio.Produtos;
-            vm.CategoriaAtual = "ProdutoCategoria";
-            return View(vm);
+            string _categoria = categoria;
+            IEnumerable<Produtos> produtos;
+            string categoriaAtual = string.Empty;
+            if (string.IsNullOrEmpty(categoria))
+            {
+                produtos = _produtoRepositorio.Produtos.OrderBy(p => p.ProdutoId);
+                categoriaAtual = "All produtos";
+            }
+            else
+            {
+               if( string.Equals("Masculino", _categoria, StringComparison.OrdinalIgnoreCase)){
+                    produtos = _produtoRepositorio.Produtos.Where(p => p.Categoria.NomeCateogira.Equals("Masculino")).OrderBy(p => p.Nome);
+               }
+                else {
+                    produtos = _produtoRepositorio.Produtos.Where(p => p.Categoria.NomeCateogira.Equals("Feminino")).OrderBy(p => p.Nome);
+                    categoriaAtual = _categoria;
+                }
+            }
+            return View(new ProdutoListViewModel
+            {
+                Produtos = produtos,
+                CategoriaAtual = categoriaAtual
+            });
         }
 
         public IActionResult Index()
