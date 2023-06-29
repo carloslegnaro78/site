@@ -19,6 +19,12 @@ namespace site.Data
 
         public DbSet<Categoria>Categorias { get; set; }
 
+
+        public DbSet<Venda> Vendas { get; set; }
+
+        public DbSet<DetalhesVenda> DetalhesVendas { get; set; }
+
+
       
         public DbSet<CarrinhoItem> CarrinhoItens { get; set; }
  
