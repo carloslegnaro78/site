@@ -23,10 +23,10 @@ namespace site.Controllers
         }
 
 
-        public IActionResult Checkout()
-        {
-            return View();
-        }
+
+
+
+
 
         [HttpPost]
 
